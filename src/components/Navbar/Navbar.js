@@ -5,8 +5,7 @@ const Container = styled.div`
     display:flex;
     align-items:center;
     background-color:#009CA3;
-    -webkit-box-shadow: 0px 7px 34px -13px rgba(0,0,0,0.6); 
-    box-shadow: 0px 7px 34px -13px rgba(0,0,0,0.6);
+    box-shadow: 0px 4px 8px #00000029;
 `
 export default function Navbar() {
     return (

@@ -2,25 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
     display:flex;
-    margin:10px;
+    margin:20px 0;
     align-items:center;
     justify-content:space-between;
     background-color:#FFFFFF;
     width:100px;
     width: 367px;
     height: 100px;
-    -webkit-box-shadow: 3px 7px 15px -5px rgba(0,0,0,0.57); 
-box-shadow: 3px 7px 15px -5px rgba(0,0,0,0.57);
-position: relative;
+    box-shadow: 0px 2px 4px #00000029;
+    position: relative;
 `
 const Image = styled.img`
     height: 100%;
+    width: 40%;
 `
 const Text = styled.div`
     display: flex;
     flex-direction:column;
     justify-content:center;
     margin-right:20px;
+    flex-wrap: wrap;
 `
 const Title = styled.h2`
     font-size:16px;
@@ -39,7 +40,7 @@ const Circle = styled.div`
     height: 48px;
     top:-15px;
     right: -10px;
-    background: #2B0D61 0% 0% no-repeat padding-box;
+    background: ${props=> !props.open ? "#B5ABD4" : "#2B0D61"} 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 2px #00000029;
     display: flex;
     align-items:center;
@@ -53,7 +54,7 @@ const Circle = styled.div`
 export default function Card({restaurant}) {
     return (
         <Container>
-            <Circle>Fechado</Circle>
+            <Circle open={false}>{false ? 'Aberto agora' : "Fechado"}</Circle>
             <Image src={restaurant.image}/>
             <Text>
             <Title>{restaurant.name}</Title>
