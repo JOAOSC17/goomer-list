@@ -50,11 +50,36 @@ const Circle = styled.div`
     text-align: center;
     font-weight:600;
 `
-
 export default function Card({restaurant}) {
+    function warningTexts () {
+        const warnings = ['Indefinido', 'Aberto Agora', 'Fechado']
+        if(openClose() === 0) return warnings[0]
+        if(openClose())  return warnings[1]
+        if(!openClose()) return warnings[2]
+    }
+    function openClose () {
+        const hourNow = new Date().getHours()
+        if(getHours()){
+            const {to, from} =  getHours()
+            const openingTime = parseInt(from)
+            const closingTime = parseInt(to)
+            const openingHours = hourNow >= openingTime && hourNow <= closingTime ? true : false
+            return openingHours
+        }
+        return 0
+    }
+    function getHours () {
+        const day = new Date().getDay() + 1
+       if(restaurant.hours) { 
+
+        const hours = restaurant.hours.filter(workinDay => workinDay.days.includes(day))
+        return hours[0]
+    }
+        return null
+    }
     return (
         <Container>
-            <Circle open={false}>{false ? 'Aberto agora' : "Fechado"}</Circle>
+            <Circle open={openClose()}>{warningTexts()}</Circle>
             <Image src={restaurant.image}/>
             <Text>
             <Title>{restaurant.name}</Title>

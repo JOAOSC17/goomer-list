@@ -9,7 +9,6 @@ export default function Home() {
     const [restaurants, setRestaurants] = useState([])
     const [message, setMessage] = useState([])
     const [loading, setLoading] = useState(true)
-    const [search, setSearch] = useState("")
     const searchWord = useRef("")
     async function getAllData () {
         try {
@@ -26,8 +25,6 @@ export default function Home() {
     async function handleFilter (event){
         event.preventDefault();
         const { current } = searchWord
-        console.log(current.value)
-        setSearch(current.value)
         const { data } = await api.get('/restaurants')
         const newFilter = data.filter((value) => {
           return value.name.toLowerCase().includes(current.value.toLowerCase());
@@ -100,9 +97,10 @@ const Wrapper = styled.section`
     flex-wrap: wrap;
     margin: 0px 43px;
 `
+console.log(restaurants)
     return (
         <div>
-            {!loading ?(
+            {!loading ? (
             <>
             <header>
             <Navbar />
@@ -133,8 +131,7 @@ const Wrapper = styled.section`
                 </Wrapper>
             </Container>
             </>
-            ) : (<div>Carregando...<br/><CircularProgress /></div>)}
-            home {':)'}
+            ) : (<div style={{fontSize:50, display:'flex', alignItems:'center',justifyContent:'center', height:'100vh', flexDirection:'column'}}>Carregando...<br/><br/><CircularProgress /></div>)}
         </div>
     )
 }
