@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import { CircularProgress } from '@mui/material';
@@ -7,7 +7,10 @@ import Navbar from '../../components/Navbar/Navbar'
 import api from '../../services'
 export default function Home() {
     const [restaurants, setRestaurants] = useState([])
+    const [message, setMessage] = useState([])
     const [loading, setLoading] = useState(true)
+    const [search, setSearch] = useState("")
+    const searchWord = useRef("")
     async function getAllData () {
         try {
             setLoading(true)
@@ -19,10 +22,32 @@ export default function Home() {
             setLoading(false)
         }
     }
+
+    async function handleFilter (event){
+        event.preventDefault();
+        const { current } = searchWord
+        console.log(current.value)
+        setSearch(current.value)
+        const { data } = await api.get('/restaurants')
+        const newFilter = data.filter((value) => {
+          return value.name.toLowerCase().includes(current.value.toLowerCase());
+        });
+        if(newFilter === []) {
+            setRestaurants([])
+            setMessage("Nenhum Restaurante com esse nome foi encontrado.")
+        }
+
+        if (current.value === "") {
+            setRestaurants(data);
+        }
+         else {
+            setRestaurants(newFilter);
+        }
+      };
      useEffect(() => {
          getAllData()
     }, [])
-const Container = styled.div`
+const Container = styled.main`
     display:flex;
     flex-direction:column;
     margin:10px;
@@ -34,16 +59,14 @@ const Title = styled.h1`
     font-weight:normal;
     margin:32px 0px;
 `
-const InputContainer = styled.div`
+const InputContainer = styled.form`
     position:relative;
     margin-bottom:26px;
-    direction: rtl;
     width: 840px;
     height: 40px;
 `
 const Input = styled.input`
     height:20px;
-    text-align:left;
     padding-left:30px ;
     width: 100%;
     height:100%;
@@ -51,6 +74,11 @@ const Input = styled.input`
     border:none;
     background: #FBFBFB 0% 0% no-repeat padding-box;
     box-shadow: 0px 2px 4px #00000029;
+    outline:none;
+    ::placeholder{
+    text-align:left;
+        
+    }
 `
 const Button = styled.button`
     background:transparent;
@@ -58,27 +86,33 @@ const Button = styled.button`
     position:absolute; 
     bottom:12px;
     top:12px;
-    right:20px;
+    display: flex;
+    justify-content:flex-end;
+    right:0px;
     width: 20px;
     height: 20px;
     border:none; 
 `
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     display:flex;
     align-items:center;
     justify-content:space-around;
     flex-wrap: wrap;
+    margin: 0px 43px;
 `
     return (
         <div>
             {!loading ?(
             <>
+            <header>
             <Navbar />
+            </header>
+            {message && (<p>{message}</p>)}
             <Container>
                 <Title>Bem-vindo ao Lista Rango</Title>
-                <InputContainer>
-                <Input placeholder="Buscar estabelecimento"/>
-                <Button type="button"><SearchIcon style={{display:'flex', alignItems:'center', justifyContent:'center', width:'100%', height:'100%' }}/></Button>
+                <InputContainer onSubmit={handleFilter}>
+                <Input type="text" ref={searchWord} placeholder="Buscar estabelecimento" />
+                <Button type="submit"><SearchIcon style={{display:'flex', alignItems:'center', justifyContent:'center', width:'100%', height:'100%' }}/></Button>
                 </InputContainer>
                 <Wrapper>
                 {restaurants.map(restaurant=>(

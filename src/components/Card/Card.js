@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
     display:flex;
-    margin:20px 0;
+    margin:20px 50px;
     align-items:center;
     justify-content:space-between;
     background-color:#FFFFFF;
