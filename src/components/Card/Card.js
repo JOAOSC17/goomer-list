@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 const Container = styled.div`
     display:flex;
@@ -82,8 +83,10 @@ export default function Card({restaurant}) {
             <Circle open={openClose()}>{warningTexts()}</Circle>
             <Image src={restaurant.image}/>
             <Text>
-            <Title>{restaurant.name}</Title>
+           <Link to={`/restaurant/${restaurant.id}`}>
+           <Title>{restaurant.name}</Title>
             <Adress>{restaurant.address}</Adress>
+            </Link> 
             </Text>
         </Container>
     )

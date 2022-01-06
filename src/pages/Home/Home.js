@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import SearchIcon from '@mui/icons-material/Search';
-import { CircularProgress } from '@mui/material';
 import Card from '../../components/Card/Card'
 import Navbar from '../../components/Navbar/Navbar'
 import api from '../../services'
+import Spinner from '../../components/Spinner/Spinner';
+import SearchBar from '../../components/Searchbar/SearchBar';
 export default function Home() {
     const [restaurants, setRestaurants] = useState([])
     const [message, setMessage] = useState([])
@@ -56,40 +56,6 @@ const Title = styled.h1`
     font-weight:normal;
     margin:32px 0px;
 `
-const InputContainer = styled.form`
-    position:relative;
-    margin-bottom:26px;
-    width: 840px;
-    height: 40px;
-`
-const Input = styled.input`
-    height:20px;
-    padding-left:30px ;
-    width: 100%;
-    height:100%;
-    border-radius: 200px;
-    border:none;
-    background: #FBFBFB 0% 0% no-repeat padding-box;
-    box-shadow: 0px 2px 4px #00000029;
-    outline:none;
-    ::placeholder{
-    text-align:left;
-        
-    }
-`
-const Button = styled.button`
-    background:transparent;
-    cursor:pointer;
-    position:absolute; 
-    bottom:12px;
-    top:12px;
-    display: flex;
-    justify-content:flex-end;
-    right:0px;
-    width: 20px;
-    height: 20px;
-    border:none; 
-`
 const Wrapper = styled.section`
     display:flex;
     align-items:center;
@@ -99,7 +65,7 @@ const Wrapper = styled.section`
 `
 console.log(restaurants)
     return (
-        <div>
+        <>
             {!loading ? (
             <>
             <header>
@@ -108,10 +74,7 @@ console.log(restaurants)
             {message && (<p>{message}</p>)}
             <Container>
                 <Title>Bem-vindo ao Lista Rango</Title>
-                <InputContainer onSubmit={handleFilter}>
-                <Input type="text" ref={searchWord} placeholder="Buscar estabelecimento" />
-                <Button type="submit"><SearchIcon style={{display:'flex', alignItems:'center', justifyContent:'center', width:'100%', height:'100%' }}/></Button>
-                </InputContainer>
+                <SearchBar margin={"0px 0px 26px 0px"} placeholder='Buscar estabelecimento' onSubmitSearch={handleFilter} refSearch={searchWord} />
                 <Wrapper>
                 {restaurants.map(restaurant=>(
                 <Card key={restaurant.id} restaurant={restaurant}/>
@@ -131,7 +94,7 @@ console.log(restaurants)
                 </Wrapper>
             </Container>
             </>
-            ) : (<div style={{fontSize:50, display:'flex', alignItems:'center',justifyContent:'center', height:'100vh', flexDirection:'column'}}>Carregando...<br/><br/><CircularProgress /></div>)}
-        </div>
+            ) : (<Spinner/>)}
+        </>
     )
 }
