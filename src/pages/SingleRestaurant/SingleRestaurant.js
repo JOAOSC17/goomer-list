@@ -59,6 +59,9 @@ const InternalWrapper = styled.div`
     max-height: ${(props) => (props.open ? '800px' : '0')};
     transition: all 0.4s ease-in-out;
     overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
 `;
 const TitleAccordion = styled.h2`
     font-size:16px;
@@ -73,7 +76,6 @@ const ButtonAccordion = styled.button`
     background: unset;
     border: unset;
     outline:none;
-    background-image: ${(props) => (!props.open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>))};
     transition: all 0.4s ease-in-out;
 `
 
@@ -150,7 +152,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {main.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+            {main.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
@@ -160,7 +162,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-                {sweet.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                {sweet.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
@@ -170,7 +172,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {strange.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+            {strange.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
@@ -180,7 +182,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {salty.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+            {salty.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
@@ -190,7 +192,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {exotic.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+            {exotic.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
@@ -200,7 +202,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {drink.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+            {drink.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
@@ -210,7 +212,7 @@ export default function SingleRestaurant() {
             <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {salad.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+            {salad.map((food, key)=> <CardFood food={food} key={key} onClickFood={()=>setFoodDetails(food)}/>)}
                 <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>

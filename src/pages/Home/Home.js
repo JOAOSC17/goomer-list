@@ -78,18 +78,6 @@ console.log(restaurants)
                 {restaurants.map(restaurant=>(
                 <Card key={restaurant.id} restaurant={restaurant}/>
                 ))}
-                {restaurants.map(restaurant=>(
-                <Card key={restaurant.id} restaurant={restaurant}/>
-                ))}
-                {restaurants.map(restaurant=>(
-                <Card key={restaurant.id} restaurant={restaurant}/>
-                ))}
-                {restaurants.map(restaurant=>(
-                <Card key={restaurant.id} restaurant={restaurant}/>
-                ))}
-                {restaurants.map(restaurant=>(
-                <Card key={restaurant.id} restaurant={restaurant}/>
-                ))}
                 </Wrapper>
             </Container>
             </>

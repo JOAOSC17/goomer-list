@@ -19,11 +19,18 @@ const Text = styled.div`
     display: flex;
     flex-direction:column;
     justify-content:center;
-    margin-right:20px;
+    margin-left:16px;
     flex-wrap: wrap;
 `
 const Title = styled.h2`
     font-size:16px;
+`
+const Desc = styled.p`
+    font-size:12px;
+`
+const Price = styled.span`
+    font-size:16px;
+    color: #009CA3;
 `
 export default function CardFood({food, onClickFood}) {
     return (
@@ -31,6 +38,8 @@ export default function CardFood({food, onClickFood}) {
             <Image src={food.image ? (food.image) : ("https://public-v2links.adobecc.com/f6e71782-ebba-4573-6f7a-005a1a6d391f/component?params=component_id%3A2864ea4e-90e4-4bb0-abc4-41784d90e8bc&params=version%3A0&token=1641558953_da39a3ee_df3944162fc9fb0f0e5dd2ed5cfb27760bb76ddc&api_key=CometServer1")}/>
             <Text>
            <Title>{food.name}</Title>
+           <Desc>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</Desc>
+           <Price>{food.price ? (food.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'}) : ('')}</Price>
             </Text>
         </Container>
     )
