@@ -9,6 +9,7 @@ const Container = styled.div`
     bottom: 0;
     right: 0;
     background-color: rgba(0,0,0, 0.5);
+    color: #404040;
 `
 const Wrapper = styled.div`
     background-color: #fff;
@@ -31,8 +32,6 @@ const Image = styled.img`
 `
 const Title = styled.h1`
     font-size:24px;
-    color: #404040;
-    font-weight:normal;
     margin-top: 45px;
 `
 const Info = styled.div`
@@ -44,14 +43,11 @@ const Info = styled.div`
 `
 const Desc = styled.p`
     font-size:16px;
-    color: #404040;
     width: 380px;
-    font-weight:normal;
 `
 const Price = styled.span`
     font-size:32px;
     color: #009CA3;
-    font-weight:normal;
 `
 const Footer = styled.footer`
     display:flex;
@@ -94,7 +90,6 @@ const InputCounter = styled.input`
 const BuyButton = styled.button`
     outline:none;
     border: none;
-    font-weight:normal;
     background-color: #009CA3;
     color:white;
     border-radius:5px;

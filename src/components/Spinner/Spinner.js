@@ -1,11 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
 import { CircularProgress } from '@mui/material';
-
+const Container = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    height:100vh;
+    font-size:50px;
+`
 export default function Spinner() {
     return (
-        <div style={{fontSize:50, display:'flex', alignItems:'center',justifyContent:'center', height:'100vh', flexDirection:'column'}}>
+        <Container>
         Carregando...<br/><br/>
-        <CircularProgress />
-        </div>
+        <CircularProgress/>
+        </Container>
     )
 }

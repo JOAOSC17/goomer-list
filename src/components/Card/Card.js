@@ -12,6 +12,7 @@ const Container = styled.div`
     height: 100px;
     box-shadow: 0px 2px 4px #00000029;
     position: relative;
+    color: #404040;
 `
 const Image = styled.img`
     height: 100%;
@@ -26,13 +27,9 @@ const Text = styled.div`
 `
 const Title = styled.h2`
     font-size:16px;
-    color: #404040;
-    font-weight:normal;
 `
 const Adress = styled.address`
     font-size:13px;
-    color: #404040;
-    font-weight:normal;
 `
 const Circle = styled.div`
     border-radius:50%;

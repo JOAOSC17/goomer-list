@@ -16,6 +16,7 @@ const Container = styled.main`
     align-items:flex-start;
     max-width:800px;
     margin: 24px 75px 0 75px;
+    color: #404040;
 `
 const InfoContainer = styled.section`
     display:flex;
@@ -30,19 +31,12 @@ const InfoRestaurant = styled.div`
 `
 const Title = styled.h1`
     font-size:24px;
-    color: #404040;
-    font-weight:normal;
 `
 const Desc = styled.p`
     font-size:16px;
-    color: #404040;
-    font-weight:normal;
-    color: #404040;
 `
 const Horary = styled.p`
     font-size:12px;
-    font-weight:normal;
-    color: #404040;
 `
 const Image = styled.img`
     height: 100%;
@@ -68,8 +62,6 @@ const InternalWrapper = styled.div`
 `;
 const TitleAccordion = styled.h2`
     font-size:16px;
-    color: #404040;
-    font-weight:normal;
 `
 const HeaderAccordion = styled.div`
     display: flex;

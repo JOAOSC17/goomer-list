@@ -8,6 +8,7 @@ const Container = styled.div`
     width: 386px;
     height: 115px;
     box-shadow: 0px 2px 4px #00000029;
+    color: #404040;
     cursor:pointer;
 `
 const Image = styled.img`
@@ -23,8 +24,6 @@ const Text = styled.div`
 `
 const Title = styled.h2`
     font-size:16px;
-    color: #404040;
-    font-weight:normal;
 `
 export default function CardFood({food, onClickFood}) {
     return (

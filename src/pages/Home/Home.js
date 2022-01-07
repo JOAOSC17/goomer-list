@@ -47,13 +47,12 @@ export default function Home() {
 const Container = styled.main`
     display:flex;
     flex-direction:column;
-    margin:10px;
     align-items:center;
+    margin:10px;
+    color: #404040;
 `
 const Title = styled.h1`
     font-size:24px;
-    color: #404040;
-    font-weight:normal;
     margin:32px 0px;
 `
 const Wrapper = styled.section`
