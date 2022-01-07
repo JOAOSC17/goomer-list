@@ -8,6 +8,7 @@ import SearchBar from '../../components/Searchbar/SearchBar'
 import Spinner from '../../components/Spinner/Spinner'
 import CardFood from '../../components/CardFood/CardFood'
 import api from '../../services'
+import Modal from '../../components/Modal/Modal';
 
 const Container = styled.main`
     display:flex;
@@ -74,6 +75,7 @@ const HeaderAccordion = styled.div`
     display: flex;
     justify-content:space-between;
     border-bottom:1px solid #404040;
+    cursor:pointer;
 `
 const ButtonAccordion = styled.button`
     background: unset;
@@ -86,6 +88,7 @@ const ButtonAccordion = styled.button`
 export default function SingleRestaurant() {
     const [loading, setLoading] = useState(true)
     const [singleRestaurant, setSingleRestaurant] = useState([])
+    const [foodDetails, setFoodDetails] = useState(null)
     const [sweet, setSweet] = useState([])
     const [strange, setStrange] = useState([])
     const [salty, setSalty] = useState([])
@@ -122,6 +125,7 @@ export default function SingleRestaurant() {
     const handleClick = () => {
         setOpen(!open);
     }
+    console.log(foodDetails)
     return (
         <>
         {!loading ? (
@@ -149,66 +153,73 @@ export default function SingleRestaurant() {
             </InfoContainer>
             <SearchBar margin={"25px 0px"} placeholder="Buscar no cardápio" />
             <AccordionWrapper>
-        <HeaderAccordion>
+        <HeaderAccordion  onClick={handleClick}>
             <TitleAccordion>Pratos Principais</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {main.map(food=> <CardFood food={food}/>)}
+            {main.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
             <AccordionWrapper>
-                <HeaderAccordion>
+            <HeaderAccordion onClick={handleClick}>
             <TitleAccordion>Doces</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-                {sweet.map(food=> <CardFood food={food}/>)}
+                {sweet.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
         <AccordionWrapper>
-            <HeaderAccordion>
+            <HeaderAccordion onClick={handleClick}>
             <TitleAccordion>Pratos Estranhos</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {strange.map(food=> <CardFood food={food}/>)}
+            {strange.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
         <AccordionWrapper>
-            <HeaderAccordion>
+            <HeaderAccordion onClick={handleClick}>
             <TitleAccordion>Salgados</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {salty.map(food=> <CardFood food={food}/>)}
+            {salty.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
         <AccordionWrapper>
-        <HeaderAccordion>
+        <HeaderAccordion onClick={handleClick}>
             <TitleAccordion>Sucos Exóticos</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {exotic.map(food=> <CardFood food={food}/>)}
+            {exotic.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
         <AccordionWrapper>
-        <HeaderAccordion>
+        <HeaderAccordion onClick={handleClick}>
             <TitleAccordion>Bebidas</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {drink.map(food=> <CardFood food={food}/>)}
+            {drink.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
         <AccordionWrapper>
-        <HeaderAccordion>
+        <HeaderAccordion onClick={handleClick}>
             <TitleAccordion>Saladas</TitleAccordion>
-            <ButtonAccordion onClick={handleClick}>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
+            <ButtonAccordion>{!open ? (<ChevronRightIcon/>) : (<ExpandMoreIcon/>)}</ButtonAccordion>
             </HeaderAccordion>
             <InternalWrapper open={open}>
-            {salad.map(food=> <CardFood food={food}/>)}
+            {salad.map(food=> <CardFood food={food} onClickFood={()=>setFoodDetails(food)}/>)}
+                <Modal isOpen={Boolean(foodDetails)} foodDetails={foodDetails} onClickClose={()=>setFoodDetails(null)}/>
             </InternalWrapper>
         </AccordionWrapper>
         </Container>
