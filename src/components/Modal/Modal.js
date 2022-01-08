@@ -123,7 +123,7 @@ export default function Modal({isOpen, onClickClose, foodDetails}) {
              <Title>{foodDetails.name}</Title>
              <Info>
              <Desc>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Desc>
-             <Price>{(foodDetails.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}</Price>
+             <Price>{foodDetails.price ? (foodDetails.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'}) : ('')}</Price>
              </Info>
              <Footer>
                  <Counter>
@@ -132,7 +132,7 @@ export default function Modal({isOpen, onClickClose, foodDetails}) {
                      <AddButton onClick={addCounter}>+</AddButton>
                  </Counter>
                  <BuyButton>
-                 Adicionar {(counter * foodDetails.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}
+                 Adicionar {foodDetails.price ? (counter * foodDetails.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'}) : ('')}
                  </BuyButton>
              </Footer>
             </Wrapper>            
