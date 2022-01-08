@@ -59,7 +59,6 @@ export default function SingleRestaurant() {
         setLoading(true)
         const { data: dataMenu } = await api.get(`/restaurants/${id}/menu`)
         const { data: dataRestaurant } = await api.get(`/restaurants/${id}`)
-        console.log(dataMenu)
         setSweet(dataMenu.filter(foods=> foods.group.toLowerCase() === 'doces'))
         setStrange(dataMenu.filter(foods=> foods.group.toLowerCase() === 'pratos estranhos'))
         setSalty(dataMenu.filter(foods=> foods.group.toLowerCase() === 'salgados'))
@@ -78,7 +77,6 @@ export default function SingleRestaurant() {
          getAllData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(singleRestaurant.length < 1)
     if(!loading && singleRestaurant.length < 1){
         navigate(`/error`)
     }

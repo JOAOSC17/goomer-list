@@ -62,7 +62,6 @@ const Wrapper = styled.section`
     flex-wrap: wrap;
     margin: 0px 43px;
 `
-console.log(restaurants)
     return (
         <>
             {!loading ? (
