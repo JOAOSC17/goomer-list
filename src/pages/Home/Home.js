@@ -58,9 +58,8 @@ const Title = styled.h1`
 const Wrapper = styled.section`
     display:flex;
     align-items:center;
-    justify-content:center;
     flex-wrap: wrap;
-    margin: 20px 43px;
+    margin: 0px 40px;
 `
     return (
         <>
