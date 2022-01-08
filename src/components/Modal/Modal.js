@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
+import CloseIcon from '@mui/icons-material/Close';
 const portalRoot = document.getElementById("portal-root");
 const Container = styled.div`
     position: fixed;
@@ -18,12 +19,23 @@ const Wrapper = styled.div`
     height: 484px;
     margin: 80px auto 0 auto;
     padding: 15px;
+    position: relative;
 `
-const Button = styled.div`
-    float: right;
+const Button = styled.button`
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    position: absolute;
+    top:-20px;
+    right:-20px;
+    width: 50px;
+    height: 50px;
+    border-radius:50px;
     background: unset;
     border: unset;
     cursor:pointer;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 4px #00000029;
 `
 const Image = styled.img`
     display: flex;
@@ -118,7 +130,9 @@ export default function Modal({isOpen, onClickClose, foodDetails}) {
                     ()=>{
                     onClickClose()
                     setCounter(1)
-                    }}>X</Button>
+                    }}>
+                        <CloseIcon/>
+                    </Button>
                 <Image src={foodDetails.image ? (foodDetails.image) : ("https://public-v2links.adobecc.com/f6e71782-ebba-4573-6f7a-005a1a6d391f/component?params=component_id%3A2864ea4e-90e4-4bb0-abc4-41784d90e8bc&params=version%3A0&token=1641558953_da39a3ee_df3944162fc9fb0f0e5dd2ed5cfb27760bb76ddc&api_key=CometServer1")} />
              <Title>{foodDetails.name}</Title>
              <Info>
