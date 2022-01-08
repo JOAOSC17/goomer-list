@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Navigate, Route, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Navbar from '../../components/Navbar/Navbar'
 import SearchBar from '../../components/Searchbar/SearchBar'
@@ -52,6 +52,7 @@ export default function SingleRestaurant() {
     const [salad, setSalad] = useState([])
     const [main, setMain] = useState([])
     const [ open, setOpen ] = useState('')
+    const navigate = useNavigate();
     const {id} = useParams()
     async function getAllData () {
         try {
@@ -77,6 +78,10 @@ export default function SingleRestaurant() {
          getAllData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    console.log(singleRestaurant.length < 1)
+    if(!loading && singleRestaurant.length < 1){
+        navigate(`/error`)
+    }
     return (
         <>
         {!loading ? (

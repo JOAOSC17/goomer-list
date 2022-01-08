@@ -10,7 +10,10 @@ export default function App() {
     return (
     <Routes>
         <Route  path="/" element={<Home />} />
-        <Route path="restaurant/:id" element={<SingleRestaurant />}/>
+        <Route path="restaurant/:id" element={<SingleRestaurant />}>
+            <Route path="restaurant/*" element={Home}/>
+        </Route>
+        <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<ErrorPage />} />
     </Routes>
     )
