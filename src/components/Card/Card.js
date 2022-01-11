@@ -25,9 +25,7 @@ const Text = styled.div`
     margin-right:20px;
     flex-wrap: wrap;
 `
-const Title = styled.h2`
-    font-size:16px;
-`
+const Title = styled.h2``
 const Adress = styled.address`
     font-size:13px;
 `

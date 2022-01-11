@@ -30,9 +30,7 @@ const InfoRestaurant = styled.div`
 const Title = styled.h1`
     font-size:24px;
 `
-const Desc = styled.p`
-    font-size:16px;
-`
+const Desc = styled.p``
 const Horary = styled.p`
     font-size:12px;
 `

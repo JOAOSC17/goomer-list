@@ -23,9 +23,7 @@ const InternalWrapper = styled.div`
     justify-content: space-around;
     flex-wrap:wrap;
 `;
-const TitleAccordion = styled.h2`
-    font-size:16px;
-`
+const TitleAccordion = styled.h2``
 const HeaderAccordion = styled.div`
     display: flex;
     justify-content:space-between;

@@ -54,7 +54,6 @@ const Info = styled.div`
     margin-bottom:10px;
 `
 const Desc = styled.p`
-    font-size:16px;
     width: 380px;
 `
 const Price = styled.span`

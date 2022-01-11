@@ -22,14 +22,11 @@ const Text = styled.div`
     margin-left:16px;
     flex-wrap: wrap;
 `
-const Title = styled.h2`
-    font-size:16px;
-`
+const Title = styled.h2``
 const Desc = styled.p`
     font-size:12px;
 `
 const Price = styled.span`
-    font-size:16px;
     color: #009CA3;
 `
 export default function CardFood({food, onClickFood}) {
