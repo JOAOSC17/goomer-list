@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState, useRef} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Navbar from '../../components/Navbar/Navbar'
@@ -52,6 +52,7 @@ export default function SingleRestaurant() {
     const [salad, setSalad] = useState([])
     const [main, setMain] = useState([])
     const [ open, setOpen ] = useState('')
+    const searchWord = useRef("")
     const navigate = useNavigate();
     const {id} = useParams()
     async function getAllData () {
@@ -73,6 +74,26 @@ export default function SingleRestaurant() {
         setLoading(false)
     }
 }
+async function handleFilter (event){
+    event.preventDefault();
+    const { current } = searchWord
+    const { data } = await api.get(`/restaurants/${id}/menu`)
+    const newFilter = data.filter((value) => {
+      return value.name.toLowerCase().includes(current.value.toLowerCase());
+    });
+    if (current.value === "") {
+        setSweet(data);
+    }
+     else {
+        setSweet(newFilter.filter(foods=> foods.group.toLowerCase() === 'doces'))
+        setStrange(newFilter.filter(foods=> foods.group.toLowerCase() === 'pratos estranhos'))
+        setSalty(newFilter.filter(foods=> foods.group.toLowerCase() === 'salgados'))
+        setExotic(newFilter.filter(foods=> foods.group.toLowerCase() === 'sucos exóticos'))
+        setDrink(newFilter.filter(foods=> foods.group.toLowerCase() === 'bebidas'))
+        setSalad(newFilter.filter(foods=> foods.group.toLowerCase() === 'saladas'))
+        setMain(newFilter.filter(foods=> foods.group.toLowerCase() === 'pratos principais'))
+    }
+  };
     useEffect(() => {
          getAllData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,7 +126,7 @@ export default function SingleRestaurant() {
             <Horary>Domingos e Feriados: <strong>11:30 às 15:00</strong></Horary>
             </InfoRestaurant>
             </InfoContainer>
-            <SearchBar margin={"25px 0px"} placeholder="Buscar no cardápio" />
+            <SearchBar margin={"25px 0px"} placeholder="Buscar no cardápio" onSubmitSearch={handleFilter} refSearch={searchWord}/>
             <Accordion title="Pratos Principais" onClickAccordion={() => setOpen('Pratos Principais')} menu={main} setFoodDetails={setFoodDetails} open={open} setOpen={setOpen}/>
             <Accordion title="Doces" onClickAccordion={() => setOpen('Doces')} menu={sweet} setFoodDetails={setFoodDetails} open={open} setOpen={setOpen}/>
             <Accordion title="Pratos Estranhos" onClickAccordion={() => setOpen('Pratos Estranhos')} menu={strange} setFoodDetails={setFoodDetails} open={open} setOpen={setOpen} />
